@@ -1,0 +1,27 @@
+button:focus {outline:0;}
+.wrapper-animate{
+	position: relative;
+	display: inline-block;
+	width: 300px;
+	height: 300px;
+	background: yellow;
+	cursor: none;
+}
+.wrapper-animate svg{
+	transform: scale(20%);
+	position: absolute;
+}
+.wrapper-animate svg path{
+	position: absolute;
+	top: 0;
+}
+.wrapper-animate .btn{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	background: transparent;
+	top: 125px;
+	left: 130px;
+	border: none;
+	cursor: none;
+}

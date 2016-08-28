@@ -1,0 +1,85 @@
+<html>
+<head>
+	<title>SVG Animated by rendyfroza</title>
+	<!-- load style -->
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+
+	<div class="wrapper-animate">
+		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+			<style type="text/css">
+				.st0{fill:none;stroke:#333;stroke-width:3;stroke-miterlimit:10;}
+				.st1{fill:none;stroke:#333;stroke-width:3;stroke-miterlimit:10;}
+				.st2{fill:none;stroke:#333;stroke-width:3;stroke-miterlimit:10;}
+			</style>
+			<path id="pathB" class="st0" d="M61,50.5c-6.3,0-19,0-19,0"/>
+			<path id="pathA" class="st1" d="M58.5,43.9c-4.5,4.5-9.1,8.9-13.6,13.4c-2.5,2.6-5,5.2-7.5,7.8c0.7,1.5,1.8,3.5,4,5
+			c5.4,3.8,13.2,1.7,17.8-1.5c6.6-4.6,7.6-12.1,7.7-13C68,46,61.5,35.3,53.2,34.2c-5.3-0.8-10.1,2.6-11.8,3.8
+			c-4.7,3.3-6.7,7.6-7.2,8.7c-1.4,3.1-1.6,6.1-1.7,7.8c0,0.3,0.1,0,0.1,1c9.3,0,28.4,0,28.4,0"/>
+			<path id="pathC" class="st2" d="M58.5,57.2c-4.5-4.5-9.1-8.9-13.6-13.3c-2.5-2.6-5-5.1-7.5-7.7c0.7-1.5,1.8-3.5,4-5
+			c5.4-3.8,13.2-1.7,17.8,1.5c6.6,4.6,7.6,12.1,7.7,13c1.1,9.5-5.4,20.2-13.7,21.3c-5.3,0.8-10.1-2.6-11.8-3.8
+			c-4.7-3.3-6.7-7.6-7.2-8.7c-1.4-3.1-1.6-6.1-1.7-7.9c0-0.3,0.1-0.1,0.1-1.1c9.3,0,28.4,0,28.4,0"/>
+		</svg>
+		<button id="btn" class="btn"></button>
+	</div>
+
+	<!-- load script -->
+	<script src="assets/segment.min.js"></script>
+	<script src="assets/ease.min.js"></script>
+
+	<!-- main script -->
+	<script>
+		// inisialisasi
+		var pathA = document.getElementById('pathA'),
+			pathB = document.getElementById('pathB'),
+			pathC = document.getElementById('pathC'),
+			segmentA = new Segment(pathA, 141, 160),
+			segmentB = new Segment(pathB, 0, 19),
+			segmentC = new Segment(pathC, 141, 160);
+
+		function animated_first_out(s){
+			s.draw('20% - 10', '20%', 0.7, {callback: function(){ animated_second_out(s) }});
+		}
+
+		function animated_second_out(s){
+			s.draw('12% - 20.6', '12%', 0.7, {easing: ease.ease('elastic-out', 1, 0.3)});
+		}
+
+		function animated_segmentB(s){
+			s.draw(0 + 9.5, 19 - 9.5, 1, {easing: ease.ease('bounce-out', 1, 0.3)});
+		}
+
+		function animated_first_in(s){
+			s.draw('80% - 10', '80%', 0.7, {callback: function(){animated_second_in(s)}});
+		}
+
+		function animated_second_in(s){
+			s.draw('97% - 14.4', '100%', 0.7, {easing: ease.ease('elastic-out', 1, 0.3)});
+		}
+		
+		function animated_segmentB_in(s){
+			s.draw(19, 0, 1, {easing: ease.ease('bounce-in', 1, 0.3)});
+		}
+
+		// inisialisasi
+		var trigger = document.getElementById('btn'),
+			isClose = true;
+
+		// event click button
+		trigger.onclick = function(){
+			if(isClose){
+				animated_first_out(segmentA);
+				animated_first_out(segmentC);
+				animated_segmentB(segmentB);
+				isClose = false;
+			}else{
+				animated_first_in(segmentA);
+				animated_first_in(segmentC);
+				animated_segmentB_in(segmentB);
+				isClose = true;
+			}
+		}
+	</script>
+</body>
+</html>
